@@ -1,0 +1,7 @@
+{
+  "name": "colombia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
