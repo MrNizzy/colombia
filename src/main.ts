@@ -13,6 +13,7 @@ import {
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -20,5 +21,6 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withFetch()),
+    provideAnimationsAsync(),
   ],
 });
