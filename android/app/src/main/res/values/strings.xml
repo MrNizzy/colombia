@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">colombia</string>
-    <string name="title_activity_main">colombia</string>
+    <string name="app_name">Colombia</string>
+    <string name="title_activity_main">Colombia</string>
     <string name="package_name">me.mrnizzy.colombia</string>
     <string name="custom_url_scheme">me.mrnizzy.colombia</string>
 </resources>
