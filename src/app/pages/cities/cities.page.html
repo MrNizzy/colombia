@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Ciudades</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Ciudades</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <main>
+    <ion-title> Ciudades de Colombia </ion-title>
+    <ion-searchbar
+      placeholder="Buscar ciudad"
+      [(ngModel)]="searchText"
+    ></ion-searchbar>
+    @if(cities().length > 0) {
+    <ion-note class="center-text">
+      Se encontraron {{ cities().length }} ciudades
+    </ion-note>
+    }
+    <ion-list lines="inset">
+      @if (cities().length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>No se encontraron ciudades</h2>
+        </ion-label>
+      </ion-item>
+      } @else if ((cities() | filterCity: searchText()).length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>
+            No se encontró ninguna ciudad con el nombre "{{ searchText() }}"
+          </h2>
+        </ion-label>
+      </ion-item>
+      } @else { @for (city of cities() | filterCity: searchText(); track
+      city.id) {
+      <ion-item button detail routerLink="{{ city.id }}">
+        <ion-label> {{ city.name }} </ion-label>
+      </ion-item>
+      } }
+    </ion-list>
+  </main>
+</ion-content>

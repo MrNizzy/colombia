@@ -41,6 +41,23 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'cities',
+        children: [
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./pages/city/city.page').then((m) => m.CityPage),
+            title: 'Ciudad',
+          },
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/cities/cities.page').then((m) => m.CitiesPage),
+            title: 'Ciudades',
+          },
+        ],
+      },
     ],
   },
   {
