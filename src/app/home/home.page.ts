@@ -1,5 +1,15 @@
-import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  defaultGeneralInfo,
+  GeneralInfo,
+} from '@app/models/general-info.model';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from '@ionic/angular/standalone';
+import { GeneralService } from '@services/general.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +17,18 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
   styleUrls: ['home.page.scss'],
   imports: [IonHeader, IonToolbar, IonTitle, IonContent],
 })
-export class HomePage {
-  constructor() {}
+export class HomePage implements OnInit {
+  generalInfoService = inject(GeneralService);
+  generalInfo = signal<GeneralInfo>(defaultGeneralInfo);
+
+  ngOnInit(): void {
+    this.generalInfoService.getGeneralInfo().subscribe({
+      next: (response) => {
+        this.generalInfo.set(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
 }
