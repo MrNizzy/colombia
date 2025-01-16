@@ -37,7 +37,7 @@
       </ion-item>
       } @else { @for (department of departments() | filterDepartment:
       searchText(); track department.id) {
-      <ion-item button detail routerLink="/departments/{{ department.id }}">
+      <ion-item button detail routerLink="{{ department.id }}">
         <ion-label>
           <h2>{{ department.name }}</h2>
           <p class="description">{{ department.description }}</p>

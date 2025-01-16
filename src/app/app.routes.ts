@@ -22,11 +22,24 @@ export const routes: Routes = [
       },
       {
         path: 'departments',
-        loadComponent: () =>
-          import('./pages/departments/departments.page').then(
-            (m) => m.DepartmentsPage
-          ),
-        title: 'Departamentos',
+        children: [
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./pages/department/department.page').then(
+                (m) => m.DepartmentPage
+              ),
+            title: 'Departamento',
+          },
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/departments/departments.page').then(
+                (m) => m.DepartmentsPage
+              ),
+            title: 'Departamentos',
+          },
+        ],
       },
     ],
   },
@@ -34,17 +47,5 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'content/home',
     pathMatch: 'full',
-  },
-  {
-    path: 'regions',
-    loadComponent: () =>
-      import('./pages/regions/regions.page').then((m) => m.RegionsPage),
-  },
-  {
-    path: 'departments',
-    loadComponent: () =>
-      import('./pages/departments/departments.page').then(
-        (m) => m.DepartmentsPage
-      ),
   },
 ];

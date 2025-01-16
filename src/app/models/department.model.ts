@@ -8,7 +8,7 @@ export interface Department {
   population: number;
   phonePrefix: string;
   countryId: number;
-  cityCapital: null;
+  cityCapital: CityCapital;
   country: null;
   cities: null;
   regionId: number;
@@ -26,6 +26,22 @@ export interface Region {
   departments: null;
 }
 
+export interface CityCapital {
+  id: number;
+  name: string;
+  description: string;
+  surface: number;
+  population: number;
+  postalCode: string;
+  departmentId: number;
+  department: null;
+  touristAttractions: null;
+  presidents: null;
+  indigenousReservations: null;
+  airports: null;
+  radios: null;
+}
+
 export const departmentDefault: Department = {
   id: 0,
   name: '',
@@ -36,7 +52,21 @@ export const departmentDefault: Department = {
   population: 0,
   phonePrefix: '',
   countryId: 0,
-  cityCapital: null,
+  cityCapital: {
+    id: 0,
+    name: '',
+    description: '',
+    surface: 0,
+    population: 0,
+    postalCode: '',
+    departmentId: 0,
+    department: null,
+    touristAttractions: null,
+    presidents: null,
+    indigenousReservations: null,
+    airports: null,
+    radios: null,
+  },
   country: null,
   cities: null,
   regionId: 0,

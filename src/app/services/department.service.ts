@@ -14,6 +14,10 @@ export class DepartmentService {
     return this.http.get<Department[]>(environment.apiUrl + '/Department');
   }
 
+  getDepartmentById(id: number): Observable<Department> {
+    return this.http.get<Department>(environment.apiUrl + `/Department/${id}`);
+  }
+
   getDepartmentsByRegion(regionId: number): Observable<Department[]> {
     return this.http.get<Department[]>(
       environment.apiUrl + `/Region/${regionId}/departments`
