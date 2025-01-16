@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
 export class DepartmentService {
   http = inject(HttpClient);
 
+  getDepartments(): Observable<Department[]> {
+    return this.http.get<Department[]>(environment.apiUrl + '/Department');
+  }
+
   getDepartmentsByRegion(regionId: number): Observable<Department[]> {
     return this.http.get<Department[]>(
       environment.apiUrl + `/Region/${regionId}/departments`

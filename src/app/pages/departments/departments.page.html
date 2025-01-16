@@ -13,4 +13,30 @@
       <ion-title size="large">Departamentos</ion-title>
     </ion-toolbar>
   </ion-header>
+  <main>
+    <ion-searchbar
+      placeholder="Buscar departamento"
+      [(ngModel)]="searchText"
+    ></ion-searchbar>
+    <ion-list lines="inset">
+      @if ((departments() | filterDepartment: searchText()).length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>
+            No se encontró ningún departamento con el nombre "{{ searchText()
+            }}"
+          </h2>
+        </ion-label>
+      </ion-item>
+      } @else { @for (department of departments() | filterDepartment:
+      searchText(); track department.id) {
+      <ion-item button detail routerLink="/departments/{{ department.id }}">
+        <ion-label>
+          <h2>{{ department.name }}</h2>
+          <p class="description">{{ department.description }}</p>
+        </ion-label>
+      </ion-item>
+      } }
+    </ion-list>
+  </main>
 </ion-content>

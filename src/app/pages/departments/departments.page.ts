@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -8,7 +8,16 @@ import {
   IonToolbar,
   IonButtons,
   IonMenuButton,
+  IonList,
+  IonLabel,
+  IonItem,
+  IonSearchbar,
 } from '@ionic/angular/standalone';
+import { DepartmentService } from '@app/services/department.service';
+import { Department } from '@app/models/department.model';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterLink } from '@angular/router';
+import { FilterDepartmentPipe } from '@app/pipes/filter-department.pipe';
 
 @Component({
   selector: 'app-departments',
@@ -24,10 +33,30 @@ import {
     FormsModule,
     IonButtons,
     IonMenuButton,
+    IonList,
+    IonItem,
+    IonLabel,
+    RouterLink,
+    IonSearchbar,
+    FilterDepartmentPipe,
   ],
 })
 export class DepartmentsPage implements OnInit {
-  constructor() {}
+  departmentService = inject(DepartmentService);
+  snackBar = inject(MatSnackBar);
+  departments = signal<Department[]>([]);
+  searchText = signal<string>('');
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.departmentService.getDepartments().subscribe({
+      next: (departments) => {
+        this.departments.set(departments);
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar los departamentos', 'Cerrar', {
+          duration: 5000,
+        });
+      },
+    });
+  }
 }
