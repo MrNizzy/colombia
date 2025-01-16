@@ -14,6 +14,7 @@
     </ion-toolbar>
   </ion-header>
   <main>
+    <ion-title>Regiones Naturales de Colombia</ion-title>
     <img
       class="map"
       src="assets/maps/Mapa_de_Colombia_(regiones_naturales)-nn.svg"
@@ -21,9 +22,9 @@
     />
     <section class="btn-regions">
       @for (region of regions(); track $index) {
-      <ion-button shape="round" (click)="openRegionModal(region)">
-        <ion-icon slot="start" name="map-outline"></ion-icon>
+      <ion-button (click)="openRegionModal(region)">
         {{ region.name }}
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-button>
       }
     </section>

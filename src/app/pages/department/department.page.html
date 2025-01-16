@@ -50,7 +50,7 @@
     </ion-list>
     <ion-list>
       <ion-list-header>
-        <ion-label> Municipios </ion-label>
+        <ion-label> Municipios ({{ cities().length }}) </ion-label>
       </ion-list-header>
       @for (city of cities(); track $index) {
       <ion-item>

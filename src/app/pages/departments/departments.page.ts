@@ -12,12 +12,17 @@ import {
   IonLabel,
   IonItem,
   IonSearchbar,
+  IonNote,
+  IonRefresher,
+  IonRefresherContent,
 } from '@ionic/angular/standalone';
 import { DepartmentService } from '@app/services/department.service';
 import { Department } from '@app/models/department.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
 import { FilterDepartmentPipe } from '@app/pipes/filter-department.pipe';
+import { addIcons } from 'ionicons';
+import { homeSharp } from 'ionicons/icons';
 
 @Component({
   selector: 'app-departments',
@@ -39,6 +44,9 @@ import { FilterDepartmentPipe } from '@app/pipes/filter-department.pipe';
     RouterLink,
     IonSearchbar,
     FilterDepartmentPipe,
+    IonNote,
+    IonRefresher,
+    IonRefresherContent,
   ],
 })
 export class DepartmentsPage implements OnInit {
@@ -46,6 +54,12 @@ export class DepartmentsPage implements OnInit {
   snackBar = inject(MatSnackBar);
   departments = signal<Department[]>([]);
   searchText = signal<string>('');
+
+  constructor() {
+    addIcons({
+      homeSharp,
+    });
+  }
 
   ngOnInit() {
     this.departmentService.getDepartments().subscribe({
@@ -57,6 +71,22 @@ export class DepartmentsPage implements OnInit {
         this.snackBar.open('Error al cargar los departamentos', 'Cerrar', {
           duration: 5000,
         });
+      },
+    });
+  }
+
+  handleRefresh(event: CustomEvent) {
+    this.departmentService.getDepartments().subscribe({
+      next: (departments) => {
+        departments.sort((a, b) => a.name.localeCompare(b.name));
+        this.departments.set(departments);
+        event.detail.complete();
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar los departamentos', 'Cerrar', {
+          duration: 5000,
+        });
+        event.detail.complete();
       },
     });
   }

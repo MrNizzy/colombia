@@ -16,6 +16,7 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonListHeader,
 } from '@ionic/angular/standalone';
 import { RegionService } from '@app/services/region.service';
 import { Region, regionDefault } from '@app/models/region.model';
@@ -23,6 +24,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { Department } from '@app/models/department.model';
 import { DepartmentService } from '@app/services/department.service';
+import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import {
+  chevronForwardCircleSharp,
+  chevronForwardSharp,
+  chevronForwardCircleOutline,
+  chevronForwardOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-regions',
@@ -49,6 +58,12 @@ export class RegionsPage implements OnInit {
   modalController = inject(ModalController);
   regions = signal<Region[]>([]);
   regionSelected = signal<Region>(regionDefault);
+
+  constructor() {
+    addIcons({
+      chevronForwardOutline,
+    });
+  }
 
   ngOnInit() {
     this.regionService.getRegions().subscribe({
@@ -89,6 +104,7 @@ export class RegionsPage implements OnInit {
     IonList,
     IonItem,
     IonLabel,
+    IonListHeader,
   ],
   template: `
     <ion-header>
@@ -136,16 +152,11 @@ export class RegionsPage implements OnInit {
           <p>{{ regionSelected().description }}</p>
 
           <ion-list lines="inset">
-            <ion-item>
-              <ion-label>
-                <strong>Departamentos ({{ departments().length }})</strong>
-              </ion-label>
-            </ion-item>
-          </ion-list>
-
-          <ion-list lines="inset">
+            <ion-list-header>
+              <ion-label>Departamentos ({{ departments().length }})</ion-label>
+            </ion-list-header>
             @for (department of departments(); track department.id) {
-            <ion-item>
+            <ion-item button detail (click)="goToDepartment(department)">
               <ion-label>
                 {{ department.name }}
               </ion-label>
@@ -161,6 +172,7 @@ export class RegionModal implements OnInit {
   modalController = inject(ModalController);
   snackBar = inject(MatSnackBar);
   departmentService = inject(DepartmentService);
+  router = inject(Router);
   regionSelected = input<Region>(regionDefault);
   departments = signal<Department[]>([]);
 
@@ -182,5 +194,10 @@ export class RegionModal implements OnInit {
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  goToDepartment(department: Department) {
+    this.modalController.dismiss();
+    this.router.navigate(['content/departments', department.id]);
   }
 }

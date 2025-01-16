@@ -8,16 +8,26 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Departamentos</ion-title>
     </ion-toolbar>
   </ion-header>
   <main>
+    <ion-title>Departamentos de Colombia</ion-title>
     <ion-searchbar
       placeholder="Buscar departamento"
       [(ngModel)]="searchText"
     ></ion-searchbar>
+    @if(departments().length > 0) {
+    <ion-note class="center-text">
+      Se encontraron {{ departments().length }} departamentos
+    </ion-note>
+    }
     <ion-list lines="inset">
       @if (departments().length === 0) {
       <ion-item>
