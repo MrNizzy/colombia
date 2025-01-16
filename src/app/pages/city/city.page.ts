@@ -8,9 +8,15 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonListHeader,
+  IonNote,
 } from '@ionic/angular/standalone';
 import { City, cityDefault } from '@app/models/city.model';
 import { CityService } from '@app/services/city.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-city',
@@ -26,6 +32,12 @@ import { CityService } from '@app/services/city.service';
     FormsModule,
     IonButtons,
     IonBackButton,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonListHeader,
+    IonNote,
+    RouterLink,
   ],
 })
 export class CityPage implements OnInit {

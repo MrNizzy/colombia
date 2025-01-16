@@ -21,7 +21,7 @@ import {
 } from '@app/models/department.model';
 import { DepartmentService } from '@app/services/department.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-department',
@@ -42,6 +42,7 @@ import { Router } from '@angular/router';
     IonLabel,
     IonNote,
     IonListHeader,
+    RouterLink,
   ],
 })
 export class DepartmentPage implements OnInit {

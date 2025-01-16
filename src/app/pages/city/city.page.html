@@ -13,4 +13,45 @@
       <ion-title size="large">{{ city().name }}</ion-title>
     </ion-toolbar>
   </ion-header>
+  <main>
+    <ion-list>
+      <ion-list-header>
+        <ion-label> Información </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label> Ciudad </ion-label>
+        <ion-note slot="end"> {{ city().name }} </ion-note>
+      </ion-item>
+      @if (city().description) {
+      <ion-item>
+        <ion-label> {{ city().description }} </ion-label>
+      </ion-item>
+      } @if (city().department) {
+      <ion-item
+        button
+        detail
+        routerLink="/content/departments/{{city().department.id}}"
+      >
+        <ion-label> Departamento </ion-label>
+        <ion-note slot="end"> {{ city().department.name }} </ion-note>
+      </ion-item>
+      } @if (city().postalCode) {
+      <ion-item>
+        <ion-label> Código postal </ion-label>
+        <ion-note slot="end"> {{ city().postalCode }} </ion-note>
+      </ion-item>
+
+      } @if (city().population) {
+      <ion-item>
+        <ion-label> Población </ion-label>
+        <ion-note slot="end"> 👪 {{ city().population }} </ion-note>
+      </ion-item>
+      } @if (city().surface) {
+      <ion-item>
+        <ion-label> Superficie </ion-label>
+        <ion-note slot="end"> {{ city().surface }} km² </ion-note>
+      </ion-item>
+      }
+    </ion-list>
+  </main>
 </ion-content>

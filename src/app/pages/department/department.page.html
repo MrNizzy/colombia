@@ -53,7 +53,7 @@
         <ion-label> Municipios ({{ cities().length }}) </ion-label>
       </ion-list-header>
       @for (city of cities(); track $index) {
-      <ion-item>
+      <ion-item button detail routerLink="/content/cities/{{city.id}}">
         <ion-label> {{ city.name }} </ion-label>
       </ion-item>
       }
