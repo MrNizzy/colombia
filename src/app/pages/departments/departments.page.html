@@ -19,7 +19,14 @@
       [(ngModel)]="searchText"
     ></ion-searchbar>
     <ion-list lines="inset">
-      @if ((departments() | filterDepartment: searchText()).length === 0) {
+      @if (departments().length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>No se encontraron departamentos</h2>
+        </ion-label>
+      </ion-item>
+      } @else if ((departments() | filterDepartment: searchText()).length === 0)
+      {
       <ion-item>
         <ion-label>
           <h2>
