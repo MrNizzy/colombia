@@ -50,6 +50,7 @@ export class DepartmentsPage implements OnInit {
   ngOnInit() {
     this.departmentService.getDepartments().subscribe({
       next: (departments) => {
+        departments.sort((a, b) => a.name.localeCompare(b.name));
         this.departments.set(departments);
       },
       error: () => {

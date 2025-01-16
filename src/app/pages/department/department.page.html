@@ -15,6 +15,9 @@
   </ion-header>
   <main>
     <ion-list>
+      <ion-list-header>
+        <ion-label> Información </ion-label>
+      </ion-list-header>
       <ion-item>
         <ion-label> Departamento </ion-label>
         <ion-note slot="end"> {{ department().name }} </ion-note>
@@ -44,6 +47,16 @@
         <ion-label> Prefijo telefónico </ion-label>
         <ion-note slot="end"> {{ department().phonePrefix }} </ion-note>
       </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        <ion-label> Municipios </ion-label>
+      </ion-list-header>
+      @for (city of cities(); track $index) {
+      <ion-item>
+        <ion-label> {{ city.name }} </ion-label>
+      </ion-item>
+      }
     </ion-list>
   </main>
 </ion-content>

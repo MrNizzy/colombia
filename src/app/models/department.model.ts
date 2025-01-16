@@ -42,6 +42,22 @@ export interface CityCapital {
   radios: null;
 }
 
+export interface City {
+  id: number;
+  name: string;
+  description: string;
+  surface: number;
+  population: number;
+  postalCode: string;
+  departmentId: number;
+  department: null;
+  touristAttractions: null;
+  presidents: null;
+  indigenousReservations: null;
+  airports: null;
+  radios: null;
+}
+
 export const departmentDefault: Department = {
   id: 0,
   name: '',

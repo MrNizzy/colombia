@@ -1,5 +1,5 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   IonContent,
@@ -8,16 +8,17 @@ import {
   IonToolbar,
   IonButtons,
   IonBackButton,
-  IonCard,
-  IonCardTitle,
-  IonCardContent,
-  IonCardHeader,
   IonList,
   IonItem,
   IonLabel,
   IonNote,
+  IonListHeader,
 } from '@ionic/angular/standalone';
-import { Department, departmentDefault } from '@app/models/department.model';
+import {
+  City,
+  Department,
+  departmentDefault,
+} from '@app/models/department.model';
 import { DepartmentService } from '@app/services/department.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -36,15 +37,11 @@ import { Router } from '@angular/router';
     FormsModule,
     IonButtons,
     IonBackButton,
-    IonCard,
-    IonCardTitle,
-    IonCardContent,
-    IonCardHeader,
     IonList,
     IonItem,
     IonLabel,
     IonNote,
-    CurrencyPipe,
+    IonListHeader,
   ],
 })
 export class DepartmentPage implements OnInit {
@@ -52,6 +49,7 @@ export class DepartmentPage implements OnInit {
   snackBar = inject(MatSnackBar);
   router = inject(Router);
   department = signal<Department>(departmentDefault);
+  cities = signal<City[]>([]);
   id = input<number>(0);
 
   ngOnInit() {
@@ -61,6 +59,19 @@ export class DepartmentPage implements OnInit {
       },
       error: () => {
         this.snackBar.open('Error al cargar el departamento', 'Cerrar', {
+          duration: 5000,
+        });
+        this.router.navigate(['/content/departments']);
+      },
+    });
+
+    this.departmentService.getCitiesByDepartment(this.id()).subscribe({
+      next: (cities) => {
+        cities.sort((a, b) => a.name.localeCompare(b.name));
+        this.cities.set(cities);
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar las ciudades', 'Cerrar', {
           duration: 5000,
         });
         this.router.navigate(['/content/departments']);
