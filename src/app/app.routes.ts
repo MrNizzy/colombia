@@ -20,6 +20,14 @@ export const routes: Routes = [
           import('./pages/regions/regions.page').then((m) => m.RegionsPage),
         title: 'Regiones',
       },
+      {
+        path: 'departments',
+        loadComponent: () =>
+          import('./pages/departments/departments.page').then(
+            (m) => m.DepartmentsPage
+          ),
+        title: 'Departamentos',
+      },
     ],
   },
   {
@@ -31,5 +39,12 @@ export const routes: Routes = [
     path: 'regions',
     loadComponent: () =>
       import('./pages/regions/regions.page').then((m) => m.RegionsPage),
+  },
+  {
+    path: 'departments',
+    loadComponent: () =>
+      import('./pages/departments/departments.page').then(
+        (m) => m.DepartmentsPage
+      ),
   },
 ];

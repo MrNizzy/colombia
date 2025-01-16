@@ -65,7 +65,7 @@ export class AppComponent {
   public appPages = [
     { title: 'Inicio', url: '/content/home', icon: 'home' },
     { title: 'Regiones', url: '/content/regions', icon: 'locate' },
-    { title: 'Departamentos', url: '/content/departaments', icon: 'map' },
+    { title: 'Departamentos', url: '/content/departments', icon: 'map' },
     { title: 'Ciudades', url: '/content/cities', icon: 'business' },
     { title: 'Presidentes', url: '/content/presidents', icon: 'people' },
     { title: 'Turismo', url: '/content/turistic', icon: 'location' },
