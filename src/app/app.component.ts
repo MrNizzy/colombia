@@ -16,16 +16,10 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
-  mailOutline,
-  mailSharp,
   paperPlaneOutline,
   paperPlaneSharp,
   heartOutline,
   heartSharp,
-  archiveOutline,
-  archiveSharp,
-  trashOutline,
-  trashSharp,
   warningOutline,
   warningSharp,
   bookmarkOutline,
@@ -98,6 +92,11 @@ export class AppComponent {
       url: '/content/holiday-calendar',
       icon: 'calendar',
     },
+    {
+      title: 'Acerca de',
+      url: '/content/about',
+      icon: 'paper-plane',
+    },
   ];
   public labels = [
     'Familia',
@@ -132,6 +131,8 @@ export class AppComponent {
       radioSharp,
       calendarOutline,
       calendarSharp,
+      paperPlaneOutline,
+      paperPlaneSharp,
     });
   }
 }

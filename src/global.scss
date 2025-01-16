@@ -37,5 +37,7 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 main {
+  display: grid;
+  gap: 0.5rem;
   padding: 1rem;
 }
