@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ president().name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ president().name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <main>
+    <ion-title class="center-text">
+      {{ president().name }} {{ president().lastName }}
+    </ion-title>
+    <ion-list>
+      <ion-list-header>
+        <ion-label> Información </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <img
+          [src]="president().image"
+          [alt]="president().name"
+          (error)="president().image = 'assets/co.svg'"
+        />
+      </ion-item>
+      <ion-item>
+        <ion-label> Presidente </ion-label>
+        <ion-note slot="end">
+          {{ president().name }} {{ president().lastName }}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label> {{ president().description }} </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label> Partido </ion-label>
+        <ion-note slot="end"> {{ president().politicalParty }} </ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label> Periodo </ion-label>
+        <ion-note slot="end">
+          <!-- prettier-ignore -->
+          {{ president().startPeriodDate | date: 'd MMM, y' }}
+          —
+          {{ president().endPeriodDate ? (president().endPeriodDate | date : 'd MMM, y') : 'Actualidad'}}
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </main>
+</ion-content>

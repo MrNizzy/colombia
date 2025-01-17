@@ -58,6 +58,27 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'presidents',
+        children: [
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./pages/president/president.page').then(
+                (m) => m.PresidentPage
+              ),
+            title: 'Presidente',
+          },
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/presidents/presidents.page').then(
+                (m) => m.PresidentsPage
+              ),
+            title: 'Presidentes',
+          },
+        ],
+      },
     ],
   },
   {

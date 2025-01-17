@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Presidentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Presidentes</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <main>
+    <ion-title class="center-text">Presidentes de Colombia</ion-title>
+    <ion-searchbar
+      placeholder="Buscar presidente"
+      [(ngModel)]="searchText"
+    ></ion-searchbar>
+    @if(presidents().length > 0) {
+    <ion-note class="center-text">
+      Se encontraron {{ presidents().length }} presidentes
+    </ion-note>
+    }
+    <ion-list lines="inset">
+      @if (presidents().length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>No se encontraron presidentes</h2>
+        </ion-label>
+      </ion-item>
+      } @else if ((presidents() | filterPresident: searchText()).length === 0) {
+      <ion-item>
+        <ion-label>
+          <h2>
+            No se encontró ningún presidente con el nombre "{{ searchText() }}"
+          </h2>
+        </ion-label>
+      </ion-item>
+      } @else { @for (president of presidents() | filterPresident: searchText();
+      track president.id) {
+      <ion-item button detail routerLink="{{ president.id }}">
+        <ion-label>
+          <h2>
+            {{ president.name }} {{ president.lastName }}
+            ({{president.startPeriodDate | date: 'yyyy'}} - @if
+            (president.endPeriodDate) { {{president.endPeriodDate | date:
+            'yyyy'}} } @else { Actualidad} )
+          </h2>
+          <p class="description">{{ president.description }}</p>
+        </ion-label>
+        <ion-thumbnail slot="start">
+          <img
+            [src]="president.image"
+            [alt]="president.name"
+            (error)="president.image = 'assets/co.svg'"
+          />
+        </ion-thumbnail>
+      </ion-item>
+      } }
+    </ion-list>
+  </main>
+</ion-content>

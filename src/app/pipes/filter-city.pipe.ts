@@ -10,8 +10,8 @@ export class FilterCityPipe implements PipeTransform {
     if (!cities || !searchText) {
       return cities;
     }
-    return cities.filter((department) =>
-      department.name.toLowerCase().includes(searchText.toLowerCase())
+    return cities.filter((city) =>
+      city.name.toLowerCase().includes(searchText.toLowerCase())
     );
   }
 }
