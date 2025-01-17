@@ -13,7 +13,6 @@ import {
   IonLabel,
   IonNote,
   IonListHeader,
-  IonThumbnail,
 } from '@ionic/angular/standalone';
 import { President, presidentDefault } from '@app/models/president.model';
 import { PresidentService } from '@app/services/president.service';
@@ -39,7 +38,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     IonNote,
     IonListHeader,
     DatePipe,
-    IonThumbnail,
   ],
 })
 export class PresidentPage implements OnInit {

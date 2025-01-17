@@ -89,7 +89,7 @@ export class AppComponent {
     },
     {
       title: 'Calendario festivo',
-      url: '/content/holiday-calendar',
+      url: '/content/holidays',
       icon: 'calendar',
     },
     {

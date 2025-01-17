@@ -79,6 +79,12 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'holidays',
+        loadComponent: () =>
+          import('./pages/holidays/holidays.page').then((m) => m.HolidaysPage),
+        title: 'Festivos',
+      },
     ],
   },
   {
