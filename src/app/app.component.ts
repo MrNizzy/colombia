@@ -68,44 +68,37 @@ export class AppComponent {
     { title: 'Departamentos', url: '/content/departments', icon: 'map' },
     { title: 'Ciudades', url: '/content/cities', icon: 'business' },
     { title: 'Presidentes', url: '/content/presidents', icon: 'people' },
-    { title: 'Turismo', url: '/content/turistic', icon: 'location' },
-    { title: 'Mapas', url: '/content/maps', icon: 'map' },
-    {
-      title: 'Especies invasoras',
-      url: '/content/invasive-species',
-      icon: 'warning',
-    },
-    { title: 'Tribus nativas', url: '/content/native-tribes', icon: 'people' },
-    { title: 'Reservas nativas', url: '/content/native-reserves', icon: 'map' },
-    {
-      title: 'Constitución política',
-      url: '/content/political-constitution',
-      icon: 'bookmark',
-    },
-    {
-      title: 'Radios',
-      url: '/content/radios',
-      icon: 'radio',
-    },
+    // { title: 'Turismo', url: '/content/turistic', icon: 'location' },
+    // { title: 'Mapas', url: '/content/maps', icon: 'map' },
+    // {
+    //   title: 'Especies invasoras',
+    //   url: '/content/invasive-species',
+    //   icon: 'warning',
+    // },
+    // { title: 'Tribus nativas', url: '/content/native-tribes', icon: 'people' },
+    // { title: 'Reservas nativas', url: '/content/native-reserves', icon: 'map' },
+    // {
+    //   title: 'Constitución política',
+    //   url: '/content/political-constitution',
+    //   icon: 'bookmark',
+    // },
+    // {
+    //   title: 'Radios',
+    //   url: '/content/radios',
+    //   icon: 'radio',
+    // },
     {
       title: 'Calendario festivo',
       url: '/content/holidays',
       icon: 'calendar',
     },
-    {
-      title: 'Acerca de',
-      url: '/content/about',
-      icon: 'paper-plane',
-    },
+    // {
+    //   title: 'Acerca de',
+    //   url: '/content/about',
+    //   icon: 'paper-plane',
+    // },
   ];
-  public labels = [
-    'Familia',
-    'Amigos',
-    'Notas',
-    'Trabajo',
-    'Viajes',
-    'Recordatorios',
-  ];
+  public labels = ['Github', 'LinkedIn', 'Twitter'];
 
   constructor() {
     addIcons({
