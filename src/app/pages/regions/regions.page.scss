@@ -6,11 +6,3 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
-
-ion-button {
-  --border-radius: 1rem;
-  --padding-top: 1rem;
-  --padding-bottom: 1rem;
-  --box-shadow: var(--mat-sys-level3);
-  --background: #dbf399;
-}

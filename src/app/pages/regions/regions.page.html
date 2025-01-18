@@ -21,7 +21,7 @@
     />
     <section class="btn-regions">
       @for (region of regions(); track $index) {
-      <ion-button (click)="openRegionModal(region)">
+      <ion-button (click)="openRegionModal(region)" color="secondary">
         {{ region.name }}
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-button>

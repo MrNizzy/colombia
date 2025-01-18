@@ -10,10 +10,14 @@ import {
   IonContent,
   IonButtons,
   IonMenuButton,
+  IonButton,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GeneralService } from '@services/general.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { arrowForward, star } from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +30,9 @@ import { ActivatedRoute } from '@angular/router';
     IonContent,
     IonButtons,
     IonMenuButton,
+    IonButton,
+    IonIcon,
+    RouterLink,
   ],
 })
 export class HomePage implements OnInit {
@@ -34,6 +41,12 @@ export class HomePage implements OnInit {
   generalInfo = signal<GeneralInfo>(defaultGeneralInfo);
   public folder!: string;
   private activatedRoute = inject(ActivatedRoute);
+
+  constructor() {
+    addIcons({
+      arrowForward,
+    });
+  }
 
   ngOnInit(): void {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;

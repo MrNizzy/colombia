@@ -42,6 +42,7 @@ import {
   calendarOutline,
   calendarSharp,
 } from 'ionicons/icons';
+import { menuLeft } from './data/icons/majesticons';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -94,13 +95,29 @@ export class AppComponent {
       url: '/content/holidays',
       icon: 'calendar',
     },
-    // {
-    //   title: 'Acerca de',
-    //   url: '/content/about',
-    //   icon: 'paper-plane',
-    // },
+    {
+      title: 'Acerca de',
+      url: '/content/about',
+      icon: 'paper-plane',
+    },
   ];
-  public labels = ['Github', 'LinkedIn', 'Twitter'];
+  public urls = [
+    {
+      title: 'GitHub',
+      url: 'https://github.com/MrNizzy',
+      icon: 'assets/icons/github.svg',
+    },
+    {
+      title: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/mrnizzy/',
+      icon: 'assets/icons/linkedin.svg',
+    },
+    {
+      title: 'Instagram',
+      url: 'https://www.instagram.com/mr.nizzy/',
+      icon: 'assets/icons/instagram.svg',
+    },
+  ];
 
   constructor() {
     addIcons({
@@ -128,6 +145,7 @@ export class AppComponent {
       calendarSharp,
       paperPlaneOutline,
       paperPlaneSharp,
+      menuLeft,
     });
   }
 }

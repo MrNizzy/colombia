@@ -94,6 +94,12 @@ export const routes: Routes = [
           ).then((m) => m.PoliticalConstitutionPage),
         title: 'Constitución Política',
       },
+      {
+        path: 'about',
+        loadComponent: () =>
+          import('./pages/about/about.page').then((m) => m.AboutPage),
+        title: 'Acerca de',
+      },
     ],
   },
   {
