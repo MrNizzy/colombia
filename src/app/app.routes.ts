@@ -11,7 +11,8 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+        loadComponent: () =>
+          import('./pages/home/home.page').then((m) => m.HomePage),
         title: 'Inicio',
       },
       {
@@ -84,6 +85,14 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./pages/holidays/holidays.page').then((m) => m.HolidaysPage),
         title: 'Festivos',
+      },
+      {
+        path: 'political-constitution',
+        loadComponent: () =>
+          import(
+            './pages/political-constitution/political-constitution.page'
+          ).then((m) => m.PoliticalConstitutionPage),
+        title: 'Constitución Política',
       },
     ],
   },

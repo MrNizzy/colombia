@@ -1,0 +1,171 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Constitución Política </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      placeholder="Buscar artículo"
+      [(ngModel)]="searchText"
+    ></ion-searchbar>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-select
+      label="Por capítulo"
+      placeholder="No se ha seleccionado capítulo"
+      [(ngModel)]="selectedChapterNumber"
+      interface="action-sheet"
+      cancelText="Cancelar"
+      fill="outline"
+      class="select"
+    >
+      <ion-select-option [value]="0">
+        No se ha seleccionado capítulo
+      </ion-select-option>
+      @for (chapter of chaptersNumber(); track $index) {
+      <ion-select-option [value]="chapter"
+        >Capítulo {{ chapter }}
+      </ion-select-option>
+      } @if (selectedChapterNumber() !== 0) {
+      <ion-button
+        fill="clear"
+        slot="end"
+        aria-label="Limpiar filtro"
+        (click)="selectedChapterNumber.set(0)"
+      >
+        <ion-icon
+          slot="icon-only"
+          name="close-outline"
+          aria-hidden="true"
+        ></ion-icon>
+      </ion-button>
+      }
+    </ion-select>
+  </ion-toolbar>
+  <ion-toolbar class="padding-bottom">
+    <ion-select
+      label="Por sección"
+      placeholder="No se ha seleccionado sección"
+      [(ngModel)]="selectedSection"
+      interface="action-sheet"
+      cancelText="Cancelar"
+      fill="outline"
+      class="select"
+    >
+      <ion-select-option value="">
+        No se ha seleccionado sección
+      </ion-select-option>
+      @for (chapter of chaptersTitles(); track $index) {
+      <ion-select-option value="{{ chapter }}">
+        {{ chapter }}
+      </ion-select-option>
+
+      } @if (selectedSection()) {
+      <ion-button
+        fill="clear"
+        slot="end"
+        aria-label="Limpiar filtro"
+        (click)="selectedSection.set('')"
+      >
+        <ion-icon
+          slot="icon-only"
+          name="close-outline"
+          aria-hidden="true"
+        ></ion-icon>
+      </ion-button>
+      }
+    </ion-select>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-select
+        label="Por capítulo"
+        placeholder="No se ha seleccionado capítulo"
+        [(ngModel)]="selectedChapterNumber"
+        interface="action-sheet"
+        cancelText="Cancelar"
+        fill="outline"
+        class="select"
+      >
+        <ion-select-option [value]="0">
+          No se ha seleccionado capítulo
+        </ion-select-option>
+        @for (chapter of chaptersNumber(); track $index) {
+        <ion-select-option [value]="chapter"
+          >Capítulo {{ chapter }}
+        </ion-select-option>
+        } @if (selectedChapterNumber() !== 0) {
+        <ion-button
+          fill="clear"
+          slot="end"
+          aria-label="Limpiar filtro"
+          (click)="selectedChapterNumber.set(0)"
+        >
+          <ion-icon
+            slot="icon-only"
+            name="close-outline"
+            aria-hidden="true"
+          ></ion-icon>
+        </ion-button>
+        }
+      </ion-select>
+    </ion-toolbar>
+    <ion-toolbar class="padding-bottom">
+      <ion-select
+        label="Por sección"
+        placeholder="No se ha seleccionado sección"
+        [(ngModel)]="selectedSection"
+        interface="action-sheet"
+        cancelText="Cancelar"
+        fill="outline"
+        class="select"
+      >
+        <ion-select-option value="">
+          No se ha seleccionado sección
+        </ion-select-option>
+        @for (chapter of chaptersTitles(); track $index) {
+        <ion-select-option value="{{ chapter }}">
+          {{ chapter }}
+        </ion-select-option>
+
+        } @if (selectedSection()) {
+        <ion-button
+          fill="clear"
+          slot="end"
+          aria-label="Limpiar filtro"
+          (click)="selectedSection.set('')"
+        >
+          <ion-icon
+            slot="icon-only"
+            name="close-outline"
+            aria-hidden="true"
+          ></ion-icon>
+        </ion-button>
+        }
+      </ion-select>
+    </ion-toolbar>
+  </ion-header>
+  <main>
+    @for (article of articles()| filterArticleChapter : selectedChapterNumber()
+    | filterArticleContent : searchText() | filterArticleSection :
+    selectedSection(); track article.id) {
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title> Artículo {{ article.articleNumber }} </ion-card-title>
+        <ion-card-subtitle>
+          <span>Capítulo: {{ article.chapter | lowercase }}</span><br />
+          <span>Artículo: {{ article.title | lowercase }}</span>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-text> {{ article.content }} </ion-text>
+      </ion-card-content>
+    </ion-card>
+    }
+  </main>
+</ion-content>

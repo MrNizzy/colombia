@@ -13,6 +13,7 @@ import {
   IonLabel,
   IonRouterOutlet,
   IonRouterLink,
+  IonTitle,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -59,6 +60,7 @@ import {
     IonLabel,
     IonRouterLink,
     IonRouterOutlet,
+    IonTitle,
   ],
 })
 export class AppComponent {
@@ -77,11 +79,11 @@ export class AppComponent {
     // },
     // { title: 'Tribus nativas', url: '/content/native-tribes', icon: 'people' },
     // { title: 'Reservas nativas', url: '/content/native-reserves', icon: 'map' },
-    // {
-    //   title: 'Constitución política',
-    //   url: '/content/political-constitution',
-    //   icon: 'bookmark',
-    // },
+    {
+      title: 'Constitución política',
+      url: '/content/political-constitution',
+      icon: 'bookmark',
+    },
     // {
     //   title: 'Radios',
     //   url: '/content/radios',

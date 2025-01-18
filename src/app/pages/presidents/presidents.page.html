@@ -5,20 +5,27 @@
     </ion-buttons>
     <ion-title>Presidentes</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchText"
+      placeholder="Buscar presidente"
+    ></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Presidentes</ion-title>
+      <ion-title size="large">Presidentes de Colombia</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar
+        [(ngModel)]="searchText"
+        placeholder="Buscar presidente"
+      ></ion-searchbar>
     </ion-toolbar>
   </ion-header>
   <main>
-    <ion-title class="center-text">Presidentes de Colombia</ion-title>
-    <ion-searchbar
-      placeholder="Buscar presidente"
-      [(ngModel)]="searchText"
-    ></ion-searchbar>
     @if(presidents().length > 0) {
     <ion-note class="center-text">
       Se encontraron {{ presidents().length }} presidentes
