@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" fixed-slot-placement="before">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Welcome</ion-title>
@@ -15,29 +15,30 @@
   </ion-header>
 
   <div class="content">
-    <img
-      src="assets/co.svg"
-      alt="Bandera de Colombia"
-      width="200"
-      style="display: block; margin: 0 auto"
-    />
-    <h1 style="font-size: 2.5em; margin-bottom: 20px">
-      ¡Bienvenido a nuestra aplicación!
-    </h1>
-    <p style="font-size: 1.2em; margin-bottom: 40px">
-      Encuentra toda la información de Colombia en un solo lugar, desde la
-      constitución política hasta la historia de nuestro país, todo en un solo
-      lugar.
-    </p>
-    <ion-button
-      expand="block"
-      color="primary"
-      size="large"
-      shape="round"
-      routerLink="/content/political-constitution"
-    >
-      Ir a la constitución
-      <ion-icon slot="start" name="arrow-forward"></ion-icon>
-    </ion-button>
+    <section class="header">
+      <div class="brand">
+        <img src="assets/co.svg" alt="Colombia" height="30" />
+        <h1>App Colombia</h1>
+      </div>
+
+      <ion-searchbar
+        placeholder="Buscar en la app"
+        class="custom"
+      ></ion-searchbar>
+    </section>
+    <ion-list>
+      <ion-title>Menu</ion-title>
+      @for (item of menuItems(); track $index) {
+      <ion-item button detail [routerLink]="item.url">
+        <ion-thumbnail slot="start">
+          <img [alt]="item.title" [src]="item.banner" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.title }}</h2>
+          <p>{{ item.description }}</p>
+        </ion-label>
+      </ion-item>
+      }
+    </ion-list>
   </div>
 </ion-content>
