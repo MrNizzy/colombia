@@ -42,7 +42,6 @@ import {
   calendarOutline,
   calendarSharp,
 } from 'ionicons/icons';
-import { menuLeft } from './data/icons/majesticons';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -145,7 +144,6 @@ export class AppComponent {
       calendarSharp,
       paperPlaneOutline,
       paperPlaneSharp,
-      menuLeft,
     });
   }
 }
