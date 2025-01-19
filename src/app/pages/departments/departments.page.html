@@ -15,10 +15,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Departamentos de Colombia</ion-title>
@@ -57,6 +53,11 @@
       } @else { @for (department of departments() | filterDepartment:
       searchText(); track department.id) {
       <ion-item button detail routerLink="{{ department.id }}">
+        @if (department.flag) {
+        <ion-thumbnail slot="start">
+          <img [alt]="department.name" [src]="department.flag" />
+        </ion-thumbnail>
+        }
         <ion-label>
           <h2>{{ department.name }}</h2>
           <p class="description">{{ department.description }}</p>

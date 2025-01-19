@@ -12,11 +12,13 @@ export interface Department {
   country: null;
   cities: null;
   regionId: number;
-  region: Region;
+  region: Region | null;
   naturalAreas: null;
   maps: null;
   indigenousReservations: null;
   airports: null;
+  flag?: string;
+  website?: string;
 }
 
 export interface Region {

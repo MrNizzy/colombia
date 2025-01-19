@@ -19,6 +19,9 @@
         <ion-label> Información </ion-label>
       </ion-list-header>
       <ion-item>
+        <img [alt]="department().name" [src]="department().flag" />
+      </ion-item>
+      <ion-item>
         <ion-label> Departamento </ion-label>
         <ion-note slot="end"> {{ department().name }} </ion-note>
       </ion-item>

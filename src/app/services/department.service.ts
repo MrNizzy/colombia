@@ -1,6 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { City, Department } from '@app/models/department.model';
+import { inject, Injectable, signal } from '@angular/core';
+import { departmentsData } from '@app/data/departments.data';
+import {
+  City,
+  Department,
+  departmentDefault,
+} from '@app/models/department.model';
 import { environment } from '@env/environment';
 import { Observable } from 'rxjs';
 
@@ -9,13 +14,17 @@ import { Observable } from 'rxjs';
 })
 export class DepartmentService {
   http = inject(HttpClient);
+  departments = signal<Department[]>(departmentsData);
 
   getDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(environment.apiUrl + '/Department');
   }
 
-  getDepartmentById(id: number): Observable<Department> {
-    return this.http.get<Department>(environment.apiUrl + `/Department/${id}`);
+  getDepartmentById(id: number): Department {
+    return (
+      this.departments().find((department) => department.id === id) ||
+      departmentDefault
+    );
   }
 
   getDepartmentsByRegion(regionId: number): Observable<Department[]> {

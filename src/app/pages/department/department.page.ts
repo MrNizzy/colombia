@@ -13,6 +13,7 @@ import {
   IonLabel,
   IonNote,
   IonListHeader,
+  IonThumbnail,
 } from '@ionic/angular/standalone';
 import {
   City,
@@ -43,6 +44,7 @@ import { Router, RouterLink } from '@angular/router';
     IonNote,
     IonListHeader,
     RouterLink,
+    IonThumbnail,
   ],
 })
 export class DepartmentPage implements OnInit {
@@ -51,22 +53,11 @@ export class DepartmentPage implements OnInit {
   router = inject(Router);
   department = signal<Department>(departmentDefault);
   cities = signal<City[]>([]);
-  id = input<number>(0);
+  id = input<string>('');
 
   ngOnInit() {
-    this.departmentService.getDepartmentById(this.id()).subscribe({
-      next: (department) => {
-        this.department.set(department);
-      },
-      error: () => {
-        this.snackBar.open('Error al cargar el departamento', 'Cerrar', {
-          duration: 5000,
-        });
-        this.router.navigate(['/content/departments']);
-      },
-    });
-
-    this.departmentService.getCitiesByDepartment(this.id()).subscribe({
+    this.department.set(this.departmentService.getDepartmentById(+this.id()));
+    this.departmentService.getCitiesByDepartment(+this.id()).subscribe({
       next: (cities) => {
         cities.sort((a, b) => a.name.localeCompare(b.name));
         this.cities.set(cities);
